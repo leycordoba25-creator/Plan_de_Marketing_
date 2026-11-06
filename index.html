@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laboratorio Agente | Plan de Marketing</title>
+<style>
+:root{
+  --ink:#1E2B3A;
+  --muted:#6B7A8C;
+  --navy:#12385F;
+  --blue:#2E6DA4;
+  --blue-2:#4E8BC4;
+  --teal:#2F7F7B;
+  --gold:#D5A547;
+  --paper:#FFFFFF;
+  --canvas:#F4F7FA;
+  --line:#DDE4EA;
+  --soft-blue:#EDF4FA;
+  --soft-teal:#EDF8F6;
+  --soft-gold:#FFF8E9;
+  --soft-green:#EEF8F0;
+  --soft-red:#FDEEEE;
+  --green:#2E7D32;
+  --red:#B23A2E;
+  --amber:#8A6500;
+  --shadow:0 14px 32px rgba(25,54,86,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+  background:linear-gradient(180deg,#F8FAFC 0%,var(--canvas) 100%);
+  color:var(--ink);
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.55}
+a{color:inherit}
+
+.hero{
+  background:
+    radial-gradient(circle at 85% 15%,rgba(255,255,255,.13),transparent 24%),
+    linear-gradient(135deg,#12385F 0%,#1F5C8F 58%,#2F7F7B 100%);
+  color:#fff;
+  padding:34px 20px 30px;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.hero-inner{max-width:1320px;margin:auto}
+.eyebrow{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-weight:800;
+  opacity:.82;
+  margin-bottom:8px;
+}
+.hero h1{
+  margin:0;
+  font-size:clamp(28px,4vw,42px);
+  line-height:1.08;
+  max-width:900px;
+}
+.hero p{
+  margin:12px 0 0;
+  font-size:15px;
+  line-height:1.55;
+  max-width:960px;
+  color:rgba(255,255,255,.9);
+}
+.hero-flow{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:18px;
+}
+.hero-flow span{
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.08);
+  border-radius:999px;
+  padding:7px 10px;
+  font-size:12px;
+  font-weight:700;
+}
+.shell{
+  max-width:1320px;
+  margin:0 auto;
+  padding:22px 18px 28px;
+  display:grid;
+  grid-template-columns:300px minmax(0,1fr);
+  gap:22px;
+  align-items:start;
+}
+.sidebar{
+  position:sticky;
+  top:14px;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(8px);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:16px;
+  box-shadow:var(--shadow);
+}
+.sidebar-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:12px;
+}
+.sidebar h2{
+  margin:0;
+  color:var(--navy);
+  font-size:16px;
+  line-height:1.25;
+}
+.sidebar .mini{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:4px;
+}
+.overall{
+  display:grid;
+  grid-template-columns:58px 1fr;
+  gap:10px;
+  align-items:center;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:linear-gradient(135deg,#FBFCFE,#F4F8FB);
+  margin-bottom:14px;
+}
+.ring{
+  width:58px;height:58px;border-radius:50%;
+  display:grid;place-items:center;
+  background:conic-gradient(var(--blue) 0deg,#E7EDF2 0deg);
+  position:relative;
+}
+.ring::after{
+  content:"";
+  position:absolute;
+  inset:6px;
+  background:#fff;
+  border-radius:50%;
+}
+.ring strong{
+  position:relative;
+  z-index:1;
+  font-size:13px;
+  color:var(--navy);
+}
+.overall b{display:block;color:var(--navy);font-size:12px}
+.overall span{font-size:11px;color:var(--muted)}
+.steps{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.step-btn{
+  width:100%;
+  display:grid;
+  grid-template-columns:38px minmax(0,1fr) 22px;
+  gap:10px;
+  align-items:center;
+  text-align:left;
+  border:1px solid transparent;
+  background:transparent;
+  border-radius:14px;
+  padding:10px;
+  color:var(--ink);
+  transition:.18s ease;
+}
+.step-btn:hover{background:#F5F8FB}
+.step-btn.active{
+  background:var(--soft-blue);
+  border-color:#C9DCEC;
+}
+.step-btn.done{
+  background:var(--soft-green);
+  border-color:#CFE4D3;
+}
+.num{
+  width:36px;height:36px;
+  border-radius:11px;
+  display:grid;place-items:center;
+  background:#E9EEF3;
+  color:var(--navy);
+  font-weight:850;
+}
+.step-btn.active .num{
+  background:linear-gradient(135deg,var(--blue),var(--blue-2));
+  color:#fff;
+}
+.step-btn.done .num{
+  background:linear-gradient(135deg,#2E7D32,#4A9A4E);
+  color:#fff;
+}
+.step-copy{min-width:0}
+.step-title{font-weight:800;font-size:13px;line-height:1.2}
+.step-sub{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.2}
+.check{
+  width:20px;height:20px;
+  display:grid;place-items:center;
+  border-radius:50%;
+  font-size:12px;
+  font-weight:900;
+  color:#fff;
+  background:transparent;
+}
+.step-btn.done .check{background:var(--green)}
+.sidebar-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+}
+.sidebar-actions .wide{grid-column:1/-1}
+
+.main{min-width:0}
+.stage{
+  display:none;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:24px;
+  box-shadow:var(--shadow);
+}
+.stage.active{display:block}
+.stage-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:16px;
+  align-items:start;
+  margin-bottom:18px;
+}
+.stage-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-size:11px;
+  font-weight:850;
+  letter-spacing:.08em;
+  color:var(--teal);
+  text-transform:uppercase;
+  margin-bottom:7px;
+}
+.stage-kicker::before{
+  content:"";
+  width:8px;height:8px;border-radius:50%;background:var(--teal);
+}
+.stage h2{
+  margin:0;
+  color:var(--navy);
+  font-size:clamp(24px,3vw,32px);
+  line-height:1.15;
+}
+.stage-desc{
+  margin:8px 0 0;
+  color:var(--muted);
+  line-height:1.55;
+  max-width:840px;
+}
+.stage-chip{
+  align-self:start;
+  background:var(--soft-gold);
+  color:#7A5600;
+  border:1px solid #F1D99D;
+  border-radius:999px;
+  padding:8px 11px;
+  font-size:11px;
+  font-weight:800;
+  white-space:nowrap;
+}
+.pathway{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  margin:0 0 20px;
+}
+.pathway .node{
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:10px 11px;
+  background:#FBFCFD;
+  font-size:11px;
+  color:var(--muted);
+}
+.pathway .node b{
+  display:block;
+  color:var(--navy);
+  font-size:12px;
+  margin-bottom:3px;
+}
+.section-title{
+  margin:22px 0 10px;
+  color:var(--navy);
+  font-size:14px;
+  font-weight:850;
+}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.full{grid-column:1/-1}
+.field{
+  min-width:0;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px;
+  background:#FCFDFE;
+}
+.field:focus-within{
+  border-color:#A8C6DF;
+  box-shadow:0 0 0 3px rgba(46,109,164,.07);
+  background:#fff;
+}
+.field label{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:var(--navy);
+  font-size:12px;
+  font-weight:850;
+  margin-bottom:7px;
+}
+.label-dot{
+  width:7px;height:7px;border-radius:50%;background:var(--gold);flex:0 0 auto;
+}
+input,textarea,select{
+  width:100%;
+  border:0;
+  border-radius:9px;
+  padding:9px 8px;
+  background:transparent;
+  color:var(--ink);
+  font-size:14px;
+}
+textarea{min-height:100px;resize:vertical;line-height:1.45}
+input:focus,textarea:focus,select:focus{outline:none}
+.help{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.45;
+}
+.agent{
+  margin-top:16px;
+  display:grid;
+  grid-template-columns:42px 1fr;
+  gap:11px;
+  align-items:start;
+  border:1px solid #E8D7A5;
+  background:linear-gradient(135deg,#FFFDF7,#FFF8E8);
+  border-radius:15px;
+  padding:13px;
+}
+.agent-icon{
+  width:42px;height:42px;border-radius:13px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,#D8A642,#B98527);
+  color:#fff;
+  font-size:18px;
+  font-weight:900;
+}
+.agent b{color:#705000}
+.agent p{margin:2px 0 0;line-height:1.45;font-size:13px}
+.status-ok{color:var(--green);font-weight:850}
+.status-warn{color:var(--amber);font-weight:850}
+.status-bad{color:var(--red);font-weight:850}
+.btn-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:14px;
+}
+.btn{
+  min-height:42px;
+  border:0;
+  border-radius:11px;
+  padding:9px 13px;
+  font-weight:800;
+  font-size:13px;
+}
+.btn-primary{
+  color:#fff;
+  background:linear-gradient(135deg,var(--blue),var(--blue-2));
+}
+.btn-secondary{
+  color:var(--navy);
+  background:#fff;
+  border:1px solid var(--line);
+}
+.btn-soft{
+  color:var(--navy);
+  background:var(--soft-blue);
+  border:1px solid #D0E0EE;
+}
+.btn-danger{
+  color:var(--red);
+  background:#fff;
+  border:1px solid #E8BBB6;
+}
+.stage-nav{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:24px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+}
+.stage-nav .right{
+  margin-left:auto;
+}
+.example{
+  margin-top:14px;
+  border:1px solid #CBE4DF;
+  background:linear-gradient(135deg,#F4FBF9,#EEF8F6);
+  border-radius:14px;
+  padding:13px;
+  line-height:1.5;
+  font-size:13px;
+}
+details{
+  margin-top:14px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#fff;
+  overflow:hidden;
+}
+summary{
+  cursor:pointer;
+  list-style:none;
+  padding:12px 14px;
+  font-weight:850;
+  color:var(--navy);
+  background:#FBFCFD;
+}
+summary::-webkit-details-marker{display:none}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .inside{padding:12px 14px}
+.mix-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.mix-card{
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:14px;
+  background:#FCFDFE;
+}
+.mix-card h3{
+  margin:0 0 4px;
+  color:var(--navy);
+  font-size:15px;
+}
+.mix-card .mini{
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.4;
+  margin-bottom:9px;
+}
+.table-wrap{
+  overflow:auto;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:#fff;
+}
+table{width:100%;border-collapse:collapse;min-width:900px}
+th{
+  background:#EFF4F8;
+  color:var(--navy);
+  font-size:11px;
+  text-align:left;
+  padding:10px;
+  border-bottom:1px solid var(--line);
+}
+td{
+  padding:8px;
+  border-bottom:1px solid var(--line);
+  vertical-align:top;
+}
+td input,td textarea,td select{
+  border:1px solid #D8E0E7;
+  background:#fff;
+  padding:8px;
+}
+td textarea{min-height:66px}
+.metric-cards{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin-top:14px;
+}
+.metric{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:13px;
+  background:#FBFCFD;
+}
+.metric .label{font-size:11px;color:var(--muted);font-weight:700}
+.metric .value{margin-top:4px;color:var(--navy);font-size:18px;font-weight:900}
+.review-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:14px;
+}
+.review-item{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:11px;
+  background:#fff;
+}
+.review-item .row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+.review-item b{color:var(--navy);font-size:13px}
+.badge{
+  border-radius:999px;
+  padding:4px 7px;
+  font-size:10px;
+  font-weight:900;
+}
+.badge-ok{background:var(--soft-green);color:var(--green)}
+.badge-warn{background:var(--soft-gold);color:var(--amber)}
+.output{
+  white-space:pre-wrap;
+  background:#FBFCFD;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:16px;
+  line-height:1.6;
+  font-size:13px;
+  margin-top:10px;
+}
+.note{
+  margin-top:12px;
+  border:1px solid #C9DCEC;
+  background:var(--soft-blue);
+  border-radius:13px;
+  padding:12px;
+  color:var(--navy);
+  font-size:12px;
+  line-height:1.5;
+}
+.footer{
+  max-width:1320px;
+  margin:0 auto 28px;
+  padding:0 18px;
+}
+.footer-inner{
+  border-top:1px solid var(--line);
+  padding-top:18px;
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+.footer-inner strong{color:var(--navy)}
+@media(max-width:960px){
+  .shell{grid-template-columns:1fr}
+  .sidebar{position:static}
+  .steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pathway,.grid,.grid3,.mix-grid,.metric-cards,.review-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .hero{padding:26px 14px 24px}
+  .shell{padding:12px}
+  .steps{grid-template-columns:1fr}
+  .stage{padding:16px;border-radius:16px}
+  .stage-head{grid-template-columns:1fr}
+  .stage-chip{justify-self:start}
+  .stage-nav{flex-direction:column-reverse}
+  .stage-nav .btn{width:100%}
+  .sidebar-actions{grid-template-columns:1fr}
+  .sidebar-actions .wide{grid-column:auto}
+}
+@media print{
+  .hero,.sidebar,.stage-nav,.btn-row,.footer{display:none!important}
+  .shell{display:block;padding:0}
+  .stage{display:block!important;box-shadow:none;border:0;padding:0;margin:0 0 22px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Especialización en Gerencia de Marketing · Módulo Mix de Marketing</div>
+    <h1>Laboratorio Agente para construir tu Plan de Marketing</h1>
+    <p>Avanza por 8 etapas, toma decisiones con base en información y deja que el agente te ayude a revisar la coherencia entre diagnóstico, objetivos, mercado, estrategias, tácticas, presupuesto e indicadores.</p>
+    <div class="hero-flow">
+      <span>Diagnóstico</span>
+      <span>Objetivos</span>
+      <span>Cliente</span>
+      <span>Mix de Marketing</span>
+      <span>Tácticas</span>
+      <span>Presupuesto</span>
+      <span>Indicadores</span>
+      <span>Plan final</span>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div>
+        <h2>Ruta de trabajo</h2>
+        <div class="mini">Completa las 8 etapas a tu ritmo.</div>
+      </div>
+    </div>
+
+    <div class="overall">
+      <div class="ring" id="ring"><strong id="ringText">0%</strong></div>
+      <div>
+        <b>Avance general</b>
+        <span id="progressMsg">Aún no has completado etapas.</span>
+      </div>
+    </div>
+
+    <div class="steps" id="stepper">
+      <button type="button" class="step-btn active" data-go="1">
+        <span class="num">1</span><span class="step-copy"><div class="step-title">Contexto y alcance</div><div class="step-sub">Empresa, oferta y reto</div></span><span class="check"></span>
+      </button>
+      <button type="button" class="step-btn" data-go="2">
+        <span class="num">2</span><span class="step-copy"><div class="step-title">Análisis situacional</div><div class="step-sub">Interno, externo y diagnóstico</div></span><span class="check"></span>
+      </button>
+      <button type="button" class="step-btn" data-go="3">
+        <span class="num">3</span><span class="step-copy"><div class="step-title">Objetivos</div><div class="step-sub">Marketing y financiero</div></span><span class="check"></span>
+      </button>
+      <button type="button" class="step-btn" data-go="4">
+        <span class="num">4</span><span class="step-copy"><div class="step-title">Mercado y cliente</div><div class="step-sub">Necesidad, segmento y target</div></span><span class="check"></span>
+      </button>
+      <button type="button" class="step-btn" data-go="5">
+        <span class="num">5</span><span class="step-copy"><div class="step-title">Oferta y Mix</div><div class="step-sub">Producto, Precio, Plaza y Promoción</div></span><span class="check"></span>
+      </button>
+      <button type="button" class="step-btn" data-go="6">
+        <span class="num">6</span><span class="step-copy"><div class="step-title">Plan táctico</div><div class="step-sub">Acciones, responsables y KPI</div></span><span class="check"></span>
+      </button>
+      <button type="button" class="step-btn" data-go="7">
+        <span class="num">7</span><span class="step-copy"><div class="step-title">Presupuesto</div><div class="step-sub">Ventas e inversión de marketing</div></span><span class="check"></span>
+      </button>
+      <button type="button" class="step-btn" data-go="8">
+        <span class="num">8</span><span class="step-copy"><div class="step-title">Indicadores y cierre</div><div class="step-sub">Control y borrador final</div></span><span class="check"></span>
+      </button>
+    </div>
+
+    <div class="sidebar-actions">
+      <button type="button" class="btn btn-primary wide" id="saveBtn">Guardar avance</button>
+      <button type="button" class="btn btn-secondary" id="exampleBtn">Cargar ejemplo</button>
+      <button type="button" class="btn btn-danger" id="resetBtn">Borrar</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <!-- ETAPA 1 -->
+    <section class="stage active" data-stage="1">
+      <div class="stage-head">
+        <div>
+          <div class="stage-kicker">Etapa 1 de 8</div>
+          <h2>Contexto y alcance del Plan</h2>
+          <p class="stage-desc">Antes de pensar en campañas, define con claridad qué empresa estás analizando, qué oferta priorizarás y cuál es el reto que da origen al Plan de Marketing.</p>
+        </div>
+        <div class="stage-chip">Primero entiende el negocio</div>
+      </div>
+
+      <div class="pathway">
+        <div class="node"><b>1. Empresa</b>¿Quién es?</div>
+        <div class="node"><b>2. Oferta</b>¿Qué vende?</div>
+        <div class="node"><b>3. Mercado</b>¿Dónde compite?</div>
+        <div class="node"><b>4. Reto</b>¿Qué necesita resolver?</div>
+      </div>
+
+      <div class="grid">
+        <div class="field"><label for="empresa"><span class="label-dot"></span>Empresa o marca</label><input id="empresa" placeholder="Ej. Arepas Sabor de Casa"></div>
+        <div class="field"><label for="oferta"><span class="label-dot"></span>Producto o servicio priorizado</label><input id="oferta" placeholder="Ej. Arepas listas para consumo"></div>
+        <div class="field"><label for="sector"><span class="label-dot"></span>Sector</label><input id="sector" placeholder="Ej. Alimentos"></div>
+        <div class="field"><label for="mercado"><span class="label-dot"></span>Mercado / cobertura</label><input id="mercado" placeholder="Ej. Montería – consumidor final"></div>
+        <div class="field"><label for="periodo"><span class="label-dot"></span>Periodo del plan</label><input id="periodo" placeholder="Ej. Enero–junio de 2027"></div>
+        <div class="field"><label for="equipo"><span class="label-dot"></span>Responsable(s)</label><input id="equipo" placeholder="Nombre del estudiante o equipo"></div>
+        <div class="field full"><label for="reto"><span class="label-dot"></span>Reto general de marketing</label><textarea id="reto" placeholder="Describe qué situación motiva el Plan. No propongas todavía la solución."></textarea><div class="help">Piensa en una situación comercial o del cliente. Ejemplo: “la empresa tiene recompra, pero no conoce a sus clientes frecuentes”.</div></div>
+      </div>
+
+      <div class="agent">
+        <div class="agent-icon">A</div>
+        <div><b>Orientación del agente</b><p id="fb1">No empieces por “hacer redes sociales” o “crear promociones”. Primero define qué está ocurriendo en el negocio.</p></div>
+      </div>
+
+      <div class="stage-nav"><span></span><button type="button" class="btn btn-primary right" data-next="2">Continuar a diagnóstico →</button></div>
+    </section>
+
+    <!-- ETAPA 2 -->
+    <section class="stage" data-stage="2">
+      <div class="stage-head">
+        <div>
+          <div class="stage-kicker">Etapa 2 de 8</div>
+          <h2>Análisis situacional y diagnóstico</h2>
+          <p class="stage-desc">Integra información interna y externa para identificar el problema u oportunidad que merece atención prioritaria.</p>
+        </div>
+        <div class="stage-chip">Hechos antes que opiniones</div>
+      </div>
+
+      <div class="grid">
+        <div class="field"><label for="externo"><span class="label-dot"></span>Análisis externo</label><textarea id="externo" placeholder="Clientes, competencia, tendencias, economía, tecnología, regulación, sustitutos..."></textarea><div class="help">Selecciona solo factores que realmente puedan afectar la decisión de marketing.</div></div>
+        <div class="field"><label for="interno"><span class="label-dot"></span>Análisis interno</label><textarea id="interno" placeholder="Ventas, portafolio, precios, canales, recursos, base de clientes, capacidades..."></textarea></div>
+        <div class="field full"><label for="evidencia"><span class="label-dot"></span>Datos o evidencias relevantes</label><textarea id="evidencia" placeholder="Ej. 65% de las ventas corresponde a clientes recurrentes; 40% de los encuestados desconoce..."></textarea></div>
+        <div class="field full"><label for="problema"><span class="label-dot"></span>Problema u oportunidad prioritaria</label><textarea id="problema" placeholder="Redacta qué ocurre, a quién afecta y qué consecuencia tiene."></textarea><div class="help">Evita formular como problema una solución específica. “No tenemos Instagram” puede ser una consecuencia, no necesariamente el problema central.</div></div>
+      </div>
+
+      <div class="btn-row"><button type="button" class="btn btn-soft" id="checkDiag">Revisar diagnóstico con el agente</button></div>
+
+      <div class="agent">
+        <div class="agent-icon">A</div>
+        <div><b>Dictamen del agente</b><p id="fb2">Pendiente de revisión.</p></div>
+      </div>
+
+      <details>
+        <summary>Ver ejemplo guía</summary>
+        <div class="inside">
+          <div class="example"><b>Arepas Sabor de Casa:</b> vende cerca de 2.000 unidades mensuales y recibe pedidos recurrentes por WhatsApp, pero no registra información de sus clientes. Esto limita la identificación de preferencias y las acciones de recompra.</div>
+        </div>
+      </details>
+
+      <div class="stage-nav"><button type="button" class="btn btn-secondary" data-prev="1">← Volver</button><button type="button" class="btn btn-primary" data-next="3">Continuar a objetivos →</button></div>
+    </section>
+
+    <!-- ETAPA 3 -->
+    <section class="stage" data-stage="3">
+      <div class="stage-head">
+        <div>
+          <div class="stage-kicker">Etapa 3 de 8</div>
+          <h2>Objetivos del Plan</h2>
+          <p class="stage-desc">Transforma el diagnóstico en resultados concretos. Un buen objetivo debe decir qué se quiere lograr, cuánto y en qué periodo.</p>
+        </div>
+        <div class="stage-chip">Qué + cuánto + cuándo</div>
+      </div>
+
+      <div class="grid">
+        <div class="field full"><label for="objMarketing"><span class="label-dot"></span>Objetivo de marketing</label><textarea id="objMarketing" placeholder="Ej. Incrementar en 15% las ventas a clientes recurrentes durante los próximos seis meses."></textarea></div>
+        <div class="field"><label for="lineaBase"><span class="label-dot"></span>Línea base</label><input id="lineaBase" placeholder="Ej. 2 compras por cliente/mes"></div>
+        <div class="field"><label for="metaMarketing"><span class="label-dot"></span>Meta</label><input id="metaMarketing" placeholder="Ej. 2,5 compras por cliente/mes"></div>
+        <div class="field"><label for="indicadorObj"><span class="label-dot"></span>Indicador principal</label><input id="indicadorObj" placeholder="Ej. Frecuencia promedio de compra"></div>
+        <div class="field"><label for="periodoObj"><span class="label-dot"></span>Periodo</label><input id="periodoObj" placeholder="Ej. 6 meses"></div>
+        <div class="field full"><label for="objFinanciero"><span class="label-dot"></span>Objetivo financiero (si aplica)</label><textarea id="objFinanciero" placeholder="Ej. Alcanzar ventas acumuladas de $X manteniendo un margen mínimo de Y%."></textarea><div class="help">Si no tienes información financiera suficiente, indícalo. No inventes cifras.</div></div>
+      </div>
+
+      <div class="btn-row"><button type="button" class="btn btn-soft" id="checkObj">Revisar objetivo con el agente</button></div>
+
+      <div class="agent">
+        <div class="agent-icon">A</div>
+        <div><b>Dictamen del agente</b><p id="fb3">Pendiente de revisión.</p></div>
+      </div>
+
+      <div class="stage-nav"><button type="button" class="btn btn-secondary" data-prev="2">← Volver</button><button type="button" class="btn btn-primary" data-next="4">Continuar al mercado →</button></div>
+    </section>
+
+    <!-- ETAPA 4 -->
+    <section class="stage" data-stage="4">
+      <div class="stage-head">
+        <div>
+          <div class="stage-kicker">Etapa 4 de 8</div>
+          <h2>Mercado, cliente y posicionamiento</h2>
+          <p class="stage-desc">Define quién es el cliente prioritario, qué necesita, cómo decide y qué lugar quieres ocupar en su mente.</p>
+        </div>
+        <div class="stage-chip">Comprender antes de segmentar</div>
+      </div>
+
+      <div class="grid">
+        <div class="field"><label for="cliente"><span class="label-dot"></span>¿Quién es el cliente?</label><textarea id="cliente" placeholder="Tipo de cliente, ubicación, contexto, rol de compra..."></textarea></div>
+        <div class="field"><label for="necesidad"><span class="label-dot"></span>Necesidad o problema</label><textarea id="necesidad" placeholder="¿Qué resultado espera obtener el cliente?"></textarea></div>
+        <div class="field"><label for="comportamiento"><span class="label-dot"></span>Comportamiento de compra</label><textarea id="comportamiento" placeholder="Cómo busca, compara, compra, usa y recompra."></textarea></div>
+        <div class="field"><label for="criterios"><span class="label-dot"></span>Criterios de elección</label><textarea id="criterios" placeholder="Precio, confianza, calidad, rapidez, garantía, disponibilidad..."></textarea></div>
+        <div class="field"><label for="segmento"><span class="label-dot"></span>Segmento prioritario / Target</label><textarea id="segmento" placeholder="¿En qué grupo concentrará el plan sus esfuerzos y por qué?"></textarea></div>
+        <div class="field"><label for="barrera"><span class="label-dot"></span>Principal barrera de compra</label><textarea id="barrera" placeholder="¿Qué puede impedir la compra o el cambio de proveedor?"></textarea></div>
+        <div class="field full"><label for="posicionamiento"><span class="label-dot"></span>Posicionamiento deseado</label><textarea id="posicionamiento" placeholder="Queremos que [segmento] perciba a [marca] como [idea central] porque [razón creíble]."></textarea></div>
+      </div>
+
+      <div class="btn-row"><button type="button" class="btn btn-soft" id="checkMarket">Revisar mercado con el agente</button></div>
+
+      <div class="agent">
+        <div class="agent-icon">A</div>
+        <div><b>Dictamen del agente</b><p id="fb4">Pendiente de revisión.</p></div>
+      </div>
+
+      <div class="stage-nav"><button type="button" class="btn btn-secondary" data-prev="3">← Volver</button><button type="button" class="btn btn-primary" data-next="5">Continuar al Mix →</button></div>
+    </section>
+
+    <!-- ETAPA 5 -->
+    <section class="stage" data-stage="5">
+      <div class="stage-head">
+        <div>
+          <div class="stage-kicker">Etapa 5 de 8</div>
+          <h2>Oferta de valor y estrategias del Mix</h2>
+          <p class="stage-desc">Define la decisión estratégica para cada variable. Aquí no se listan actividades; se define el camino que seguirá la empresa.</p>
+        </div>
+        <div class="stage-chip">Estrategia ≠ táctica</div>
+      </div>
+
+      <div class="field full" style="margin-bottom:14px"><label for="valor"><span class="label-dot"></span>Oferta de valor</label><textarea id="valor" placeholder="¿Qué valor relevante, diferencial y creíble se ofrecerá al segmento prioritario?"></textarea></div>
+
+      <div class="mix-grid">
+        <div class="mix-card">
+          <h3>Producto / Servicio</h3>
+          <div class="mini">Atributos, experiencia, portafolio, servicio y diferenciación.</div>
+          <textarea id="estProducto" placeholder="¿Qué debe fortalecerse en la oferta para generar mayor valor?"></textarea>
+        </div>
+        <div class="mix-card">
+          <h3>Precio</h3>
+          <div class="mini">Valor percibido, nivel de precio, condiciones, paquetes y rentabilidad.</div>
+          <textarea id="estPrecio" placeholder="¿Qué decisión de precio es coherente con el cliente y el posicionamiento?"></textarea>
+        </div>
+        <div class="mix-card">
+          <h3>Plaza / Distribución</h3>
+          <div class="mini">Cobertura, canales, acceso, disponibilidad, entrega y omnicanalidad.</div>
+          <textarea id="estPlaza" placeholder="¿Cómo facilitar el acceso o mejorar el canal?"></textarea>
+        </div>
+        <div class="mix-card">
+          <h3>Promoción / Comunicación</h3>
+          <div class="mini">Audiencia, mensaje, medios y propósito de comunicación.</div>
+          <textarea id="estPromo" placeholder="¿Cómo lograr conocimiento, consideración, conversión o fidelización?"></textarea>
+        </div>
+      </div>
+
+      <div class="btn-row"><button type="button" class="btn btn-soft" id="checkMix">Revisar coherencia del Mix</button></div>
+
+      <div class="agent">
+        <div class="agent-icon">A</div>
+        <div><b>Dictamen del agente</b><p id="fb5">Pendiente de revisión.</p></div>
+      </div>
+
+      <details>
+        <summary>Ver diferencia entre estrategia y táctica</summary>
+        <div class="inside">
+          <div class="example"><b>Estrategia:</b> fortalecer la relación con clientes actuales mediante comunicación segmentada para aumentar la recompra.<br><b>Táctica:</b> enviar una campaña mensual de WhatsApp a clientes con más de 30 días sin comprar.</div>
+        </div>
+      </details>
+
+      <div class="stage-nav"><button type="button" class="btn btn-secondary" data-prev="4">← Volver</button><button type="button" class="btn btn-primary" data-next="6">Continuar a tácticas →</button></div>
+    </section>
+
+    <!-- ETAPA 6 -->
+    <section class="stage" data-stage="6">
+      <div class="stage-head">
+        <div>
+          <div class="stage-kicker">Etapa 6 de 8</div>
+          <h2>Plan táctico</h2>
+          <p class="stage-desc">Convierte las estrategias en acciones ejecutables. Cada táctica debe tener responsable, periodo, KPI y presupuesto.</p>
+        </div>
+        <div class="stage-chip">Pocas acciones, bien conectadas</div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>#</th><th>Táctica</th><th>Variable</th><th>Responsable</th><th>Periodo</th><th>KPI</th><th>Presupuesto</th></tr>
+          </thead>
+          <tbody id="tacticsBody"></tbody>
+        </table>
+      </div>
+
+      <div class="btn-row"><button type="button" class="btn btn-soft" id="checkTactics">Revisar tácticas con el agente</button></div>
+
+      <div class="agent">
+        <div class="agent-icon">A</div>
+        <div><b>Dictamen del agente</b><p id="fb6">Pendiente de revisión.</p></div>
+      </div>
+
+      <div class="stage-nav"><button type="button" class="btn btn-secondary" data-prev="5">← Volver</button><button type="button" class="btn btn-primary" data-next="7">Continuar a presupuesto →</button></div>
+    </section>
+
+    <!-- ETAPA 7 -->
+    <section class="stage" data-stage="7">
+      <div class="stage-head">
+        <div>
+          <div class="stage-kicker">Etapa 7 de 8</div>
+          <h2>Presupuesto de ventas y marketing</h2>
+          <p class="stage-desc">Comprueba que el Plan sea ejecutable y que la inversión guarde relación con las metas comerciales.</p>
+        </div>
+        <div class="stage-chip">La estrategia también debe ser viable</div>
+      </div>
+
+      <div class="grid">
+        <div class="field"><label for="ventasActuales"><span class="label-dot"></span>Ventas actuales / línea base</label><input id="ventasActuales" placeholder="Ej. $25.000.000 mensuales"></div>
+        <div class="field"><label for="ventasMeta"><span class="label-dot"></span>Meta de ventas</label><input id="ventasMeta" placeholder="Ej. $30.000.000 mensuales"></div>
+        <div class="field full"><label for="supuestosVentas"><span class="label-dot"></span>Supuestos de la proyección</label><textarea id="supuestosVentas" placeholder="Explica de dónde sale la meta: volumen, clientes, ticket, frecuencia, estacionalidad..."></textarea></div>
+        <div class="field"><label for="presupuestoMarketing"><span class="label-dot"></span>Presupuesto total de marketing</label><input id="presupuestoMarketing" type="number" min="0" placeholder="Ej. 5000000"></div>
+        <div class="field"><label for="contingencia"><span class="label-dot"></span>Reserva / contingencia</label><input id="contingencia" type="number" min="0" placeholder="Ej. 500000"></div>
+        <div class="field full"><label for="criterioInversion"><span class="label-dot"></span>Criterio para priorizar la inversión</label><textarea id="criterioInversion" placeholder="¿Por qué estas acciones reciben mayor o menor presupuesto?"></textarea></div>
+      </div>
+
+      <div class="metric-cards">
+        <div class="metric"><div class="label">Suma de tácticas</div><div class="value" id="sumTactics">$0</div></div>
+        <div class="metric"><div class="label">Presupuesto declarado</div><div class="value" id="declaredBudget">$0</div></div>
+        <div class="metric"><div class="label">Diferencia</div><div class="value" id="budgetDiff">$0</div></div>
+      </div>
+
+      <div class="btn-row"><button type="button" class="btn btn-soft" id="checkBudget">Revisar presupuesto con el agente</button></div>
+
+      <div class="agent">
+        <div class="agent-icon">A</div>
+        <div><b>Dictamen del agente</b><p id="fb7">Pendiente de revisión.</p></div>
+      </div>
+
+      <div class="stage-nav"><button type="button" class="btn btn-secondary" data-prev="6">← Volver</button><button type="button" class="btn btn-primary" data-next="8">Continuar al cierre →</button></div>
+    </section>
+
+    <!-- ETAPA 8 -->
+    <section class="stage" data-stage="8">
+      <div class="stage-head">
+        <div>
+          <div class="stage-kicker">Etapa 8 de 8</div>
+          <h2>Indicadores, control y borrador final</h2>
+          <p class="stage-desc">Define cómo se medirá el resultado, valida la coherencia integral y genera el borrador estructurado del Plan de Marketing.</p>
+        </div>
+        <div class="stage-chip">Medir para aprender y ajustar</div>
+      </div>
+
+      <div class="grid3">
+        <div class="field">
+          <label for="kpi1"><span class="label-dot"></span>KPI 1</label>
+          <input id="kpi1" placeholder="Ej. Tasa de recompra">
+          <div class="help">Meta</div>
+          <input id="meta1" placeholder="Ej. 35%">
+        </div>
+        <div class="field">
+          <label for="kpi2"><span class="label-dot"></span>KPI 2</label>
+          <input id="kpi2" placeholder="Ej. Ticket promedio">
+          <div class="help">Meta</div>
+          <input id="meta2" placeholder="Ej. +10%">
+        </div>
+        <div class="field">
+          <label for="kpi3"><span class="label-dot"></span>KPI 3</label>
+          <input id="kpi3" placeholder="Ej. Conversión">
+          <div class="help">Meta</div>
+          <input id="meta3" placeholder="Ej. 20%">
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top:14px">
+        <div class="field"><label for="frecuencia"><span class="label-dot"></span>Frecuencia de seguimiento</label><input id="frecuencia" placeholder="Ej. Mensual"></div>
+        <div class="field"><label for="fuente"><span class="label-dot"></span>Fuente de datos</label><input id="fuente" placeholder="CRM, POS, encuesta, ventas, Analytics..."></div>
+        <div class="field full"><label for="ajustes"><span class="label-dot"></span>Criterio de ajuste</label><textarea id="ajustes" placeholder="¿Qué se revisará si el indicador no avanza según lo esperado?"></textarea></div>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="btn btn-primary" id="finalCheckBtn">Validar Plan completo</button>
+        <button type="button" class="btn btn-secondary" id="generateBtn">Generar borrador</button>
+        <button type="button" class="btn btn-secondary" id="downloadBtn">Descargar Word</button>
+        <button type="button" class="btn btn-secondary" id="printBtn">Imprimir</button>
+      </div>
+
+      <div class="agent">
+        <div class="agent-icon">A</div>
+        <div><b>Dictamen integral</b><p id="finalFeedback">Pendiente.</p></div>
+      </div>
+
+      <div id="reviewGrid" class="review-grid"></div>
+
+      <div class="section-title">Borrador estructurado del Plan</div>
+      <div class="note">Este borrador orienta la construcción académica. Debe complementarse con introducción, plataforma estratégica, fuentes, tablas, figuras, referencias y anexos exigidos por la plantilla institucional.</div>
+      <div id="planOutput" class="output">Completa las etapas y pulsa “Generar borrador”.</div>
+
+      <div class="stage-nav"><button type="button" class="btn btn-secondary" data-prev="7">← Volver</button><button type="button" class="btn btn-primary" data-go-top="1">Revisar desde el inicio</button></div>
+    </section>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <strong>Herramienta diseñada para uso académico en el módulo Mix de Marketing.</strong><br>
+    Su propósito es orientar la construcción del Plan de Marketing y fortalecer la relación entre análisis, decisiones estratégicas y resultados esperados.
+  </div>
+</footer>
+
+<script>
+(function(){
+  const root=document;
+  const stageCount=8;
+  const q=id=>root.getElementById(id);
+  const value=id=>(q(id)?.value||'').trim();
+  const esc=s=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  function buildTactics(){
+    const body=q('tacticsBody');
+    let html='';
+    for(let i=1;i<=5;i++){
+      html+=`<tr>
+        <td><b>${i}</b></td>
+        <td><textarea id="tac${i}" placeholder="Acción concreta"></textarea></td>
+        <td><select id="var${i}"><option value="">Seleccione</option><option>Producto</option><option>Precio</option><option>Plaza</option><option>Promoción</option><option>Transversal</option></select></td>
+        <td><input id="resp${i}" placeholder="Responsable"></td>
+        <td><input id="per${i}" placeholder="Periodo"></td>
+        <td><input id="tkpi${i}" placeholder="Indicador"></td>
+        <td><input id="pres${i}" type="number" min="0" placeholder="COP"></td>
+      </tr>`;
+    }
+    body.innerHTML=html;
+  }
+
+  function stageComplete(n){
+    const groups={
+      1:['empresa','oferta','sector','mercado','periodo','reto'],
+      2:['externo','interno','evidencia','problema'],
+      3:['objMarketing','lineaBase','metaMarketing','indicadorObj','periodoObj'],
+      4:['cliente','necesidad','segmento','posicionamiento'],
+      5:['valor','estProducto','estPrecio','estPlaza','estPromo'],
+      6:['tac1','var1','resp1','per1','tkpi1'],
+      7:['ventasActuales','ventasMeta','presupuestoMarketing','criterioInversion'],
+      8:['kpi1','meta1','frecuencia','fuente']
+    };
+    const ids=groups[n]||[];
+    return ids.length&&ids.every(id=>value(id));
+  }
+
+  function go(n){
+    const target=Math.max(1,Math.min(stageCount,n));
+    root.querySelectorAll('.stage').forEach(s=>s.classList.toggle('active',Number(s.dataset.stage)===target));
+    root.querySelectorAll('.step-btn').forEach(b=>b.classList.toggle('active',Number(b.dataset.go)===target));
+    updateProgress();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  function updateProgress(){
+    let done=0;
+    root.querySelectorAll('.step-btn').forEach(b=>{
+      const n=Number(b.dataset.go);
+      const ok=stageComplete(n);
+      b.classList.toggle('done',ok);
+      const c=b.querySelector('.check');
+      if(c)c.textContent=ok?'✓':'';
+      if(ok)done++;
+    });
+    const pct=Math.round(done/stageCount*100);
+    q('ringText').textContent=pct+'%';
+    q('ring').style.background=`conic-gradient(var(--blue) ${pct*3.6}deg,#E7EDF2 0deg)`;
+    q('progressMsg').textContent=done===0?'Aún no has completado etapas.':done===stageCount?'Ruta completa. Revisa y genera tu plan.':`${done} de ${stageCount} etapas completas.`;
+    updateBudget();
+  }
+
+  function save(){
+    const data={};
+    root.querySelectorAll('input,textarea,select').forEach(el=>{if(el.id)data[el.id]=el.value});
+    localStorage.setItem('laboratorioPlanMarketingVisual',JSON.stringify(data));
+    alert('Avance guardado en este navegador.');
+  }
+
+  function load(){
+    try{
+      const data=JSON.parse(localStorage.getItem('laboratorioPlanMarketingVisual')||'{}');
+      Object.entries(data).forEach(([id,v])=>{if(q(id))q(id).value=v});
+    }catch(e){}
+    updateProgress();
+  }
+
+  function resetAll(){
+    if(!confirm('¿Deseas borrar todo el laboratorio?'))return;
+    localStorage.removeItem('laboratorioPlanMarketingVisual');
+    root.querySelectorAll('input,textarea,select').forEach(el=>el.value='');
+    ['fb2','fb3','fb4','fb5','fb6','fb7'].forEach(id=>q(id).textContent='Pendiente de revisión.');
+    q('finalFeedback').textContent='Pendiente.';
+    q('reviewGrid').innerHTML='';
+    q('planOutput').textContent='Completa las etapas y pulsa “Generar borrador”.';
+    go(1);
+    updateProgress();
+  }
+
+  function setFeedback(id,type,text){
+    const cls=type==='ok'?'status-ok':type==='warn'?'status-warn':'status-bad';
+    const label=type==='ok'?'PASS':type==='warn'?'REVISAR':'HOLD';
+    q(id).innerHTML=`<span class="${cls}">${label}:</span> ${text}`;
+  }
+
+  function checkDiag(){
+    const missing=['externo','interno','evidencia','problema'].filter(id=>!value(id));
+    if(missing.length)return setFeedback('fb2','bad','faltan elementos para sustentar el diagnóstico.');
+    const p=value('problema').toLowerCase();
+    if(['instagram','facebook','tiktok','redes sociales','volante','publicidad'].some(w=>p.includes(w))){
+      return setFeedback('fb2','warn','el problema parece formulado desde un canal o una acción. Explica primero la situación comercial o del cliente que origina esa necesidad.');
+    }
+    setFeedback('fb2','ok','hay análisis interno, externo, evidencia y un problema priorizado. Verifica que las cifras tengan fuente.');
+  }
+
+  function checkObj(){
+    const o=value('objMarketing');
+    if(!o)return setFeedback('fb3','bad','falta el objetivo de marketing.');
+    const numeric=/\d/.test(o)||value('metaMarketing');
+    if(!numeric||!value('periodoObj')||!value('indicadorObj')){
+      return setFeedback('fb3','warn','el objetivo aún necesita una meta, indicador y periodo claramente verificables.');
+    }
+    setFeedback('fb3','ok','el objetivo es medible. Confirma que responda directamente al diagnóstico y no enumere tácticas.');
+  }
+
+  function checkMarket(){
+    const score=['cliente','necesidad','comportamiento','criterios','segmento','barrera','posicionamiento'].filter(id=>value(id)).length;
+    if(score<5)return setFeedback('fb4','warn','falta información para comprender suficientemente al cliente y justificar el segmento prioritario.');
+    setFeedback('fb4','ok','el mercado está descrito desde necesidad, comportamiento, criterios y segmentación. Sustenta estas conclusiones con investigación o datos disponibles.');
+  }
+
+  function checkMix(){
+    const ids=['valor','estProducto','estPrecio','estPlaza','estPromo'];
+    if(ids.some(id=>!value(id)))return setFeedback('fb5','bad','el Mix está incompleto. Revisa la oferta de valor y las cuatro variables.');
+    const txt=ids.map(id=>value(id).toLowerCase()).join(' ');
+    if(['publicar tres','enviar whatsapp','hacer volante','crear qr','subir contenido','hacer reels'].some(x=>txt.includes(x))){
+      return setFeedback('fb5','warn','algunas redacciones parecen tácticas. Formula primero la decisión estratégica y deja la acción concreta para la etapa 6.');
+    }
+    setFeedback('fb5','ok','las cuatro variables están formuladas. Ahora verifica que todas contribuyan al mismo objetivo y posicionamiento.');
+  }
+
+  function checkTactics(){
+    let complete=0;
+    for(let i=1;i<=5;i++){
+      if(value('tac'+i)&&value('var'+i)&&value('resp'+i)&&value('per'+i)&&value('tkpi'+i))complete++;
+    }
+    if(complete<2)return setFeedback('fb6','warn','registra al menos dos tácticas completamente estructuradas: acción, variable, responsable, periodo e indicador.');
+    setFeedback('fb6','ok',`${complete} táctica(s) están estructuradas. Revisa que sean ejecutables y estén conectadas con las estrategias.`);
+  }
+
+  function updateBudget(){
+    let sum=0;
+    for(let i=1;i<=5;i++)sum+=Number(value('pres'+i)||0);
+    const declared=Number(value('presupuestoMarketing')||0);
+    const diff=declared-sum;
+    q('sumTactics').textContent='$'+sum.toLocaleString('es-CO');
+    q('declaredBudget').textContent='$'+declared.toLocaleString('es-CO');
+    q('budgetDiff').textContent='$'+diff.toLocaleString('es-CO');
+  }
+
+  function checkBudget(){
+    const declared=Number(value('presupuestoMarketing')||0);
+    let sum=0;
+    for(let i=1;i<=5;i++)sum+=Number(value('pres'+i)||0);
+    if(!declared)return setFeedback('fb7','warn','define el presupuesto total de marketing y explica el criterio de inversión.');
+    if(sum&&Math.abs(sum-declared)>1){
+      return setFeedback('fb7','warn',`la suma de tácticas ($${sum.toLocaleString('es-CO')}) no coincide con el presupuesto declarado ($${declared.toLocaleString('es-CO')}).`);
+    }
+    setFeedback('fb7','ok','el presupuesto está identificado. Contrasta ahora la inversión con la meta comercial y la capacidad real de la empresa.');
+  }
+
+  function validateFinal(){
+    const checks=[
+      ['Diagnóstico',!!value('problema')&&!!value('evidencia'),'Problema sustentado con evidencia'],
+      ['Objetivo',!!value('objMarketing')&&!!value('metaMarketing')&&!!value('indicadorObj'),'Objetivo medible y trazable'],
+      ['Cliente',!!value('segmento')&&!!value('necesidad'),'Segmento y necesidad definidos'],
+      ['Posicionamiento',!!value('posicionamiento')&&!!value('valor'),'Posicionamiento y oferta de valor'],
+      ['Mix',!!value('estProducto')&&!!value('estPrecio')&&!!value('estPlaza')&&!!value('estPromo'),'Cuatro variables formuladas'],
+      ['Tácticas',!!value('tac1')&&!!value('resp1')&&!!value('tkpi1'),'Acciones con responsable e indicador'],
+      ['Presupuesto',!!value('presupuestoMarketing'),'Inversión total definida'],
+      ['Control',!!value('kpi1')&&!!value('meta1')&&!!value('frecuencia')&&!!value('fuente'),'KPI, meta, frecuencia y fuente']
+    ];
+    q('reviewGrid').innerHTML=checks.map(([name,ok,desc])=>`
+      <div class="review-item">
+        <div class="row"><b>${name}</b><span class="badge ${ok?'badge-ok':'badge-warn'}">${ok?'PASS':'REVISAR'}</span></div>
+        <div class="help">${desc}</div>
+      </div>`).join('');
+    const failed=checks.filter(x=>!x[1]);
+    q('finalFeedback').innerHTML=failed.length
+      ? `<span class="status-warn">HOLD:</span> todavía hay ${failed.length} componente(s) por fortalecer antes de entregar.`
+      : `<span class="status-ok">PASS:</span> existe coherencia básica entre diagnóstico, objetivos, mercado, Mix, tácticas, presupuesto e indicadores.`;
+    updateProgress();
+  }
+
+  function tacticsText(){
+    const lines=[];
+    for(let i=1;i<=5;i++){
+      if(value('tac'+i)){
+        lines.push(`${i}. ${value('tac'+i)}
+   Variable: ${value('var'+i)||'Pendiente'} | Responsable: ${value('resp'+i)||'Pendiente'} | Periodo: ${value('per'+i)||'Pendiente'}
+   KPI: ${value('tkpi'+i)||'Pendiente'} | Presupuesto: ${value('pres'+i)?'$'+Number(value('pres'+i)).toLocaleString('es-CO'):'Pendiente'}`);
+      }
+    }
+    return lines.length?lines.join('\n'):'[Pendiente]';
+  }
+
+  function generate(){
+    const txt=`PLAN DE MARKETING – ${value('empresa')||'[EMPRESA]'}
+Responsable(s): ${value('equipo')||'[Pendiente]'}
+Periodo: ${value('periodo')||'[Pendiente]'}
+Oferta priorizada: ${value('oferta')||'[Pendiente]'}
+Mercado: ${value('mercado')||'[Pendiente]'}
+
+1. ANÁLISIS SITUACIONAL
+
+1.1 Análisis externo
+${value('externo')||'[Completar]'}
+
+1.2 Análisis interno
+${value('interno')||'[Completar]'}
+
+Evidencias principales
+${value('evidencia')||'[Completar]'}
+
+Diagnóstico / problema u oportunidad prioritaria
+${value('problema')||'[Completar]'}
+
+2. OBJETIVOS
+
+2.1 Objetivo de marketing
+${value('objMarketing')||'[Completar]'}
+Línea base: ${value('lineaBase')||'[Pendiente]'}
+Meta: ${value('metaMarketing')||'[Pendiente]'}
+Indicador: ${value('indicadorObj')||'[Pendiente]'}
+Periodo: ${value('periodoObj')||'[Pendiente]'}
+
+2.2 Objetivo financiero
+${value('objFinanciero')||'[Completar si aplica]'}
+
+3. CONDICIONES DEL MERCADO
+
+Cliente
+${value('cliente')||'[Completar]'}
+
+Necesidad principal
+${value('necesidad')||'[Completar]'}
+
+Comportamiento de compra
+${value('comportamiento')||'[Completar]'}
+
+Criterios de elección
+${value('criterios')||'[Completar]'}
+
+Segmento prioritario / Target
+${value('segmento')||'[Completar]'}
+
+Barrera principal
+${value('barrera')||'[Completar]'}
+
+Posicionamiento
+${value('posicionamiento')||'[Completar]'}
+
+4. ESTRATEGIAS DE MARKETING
+
+4.1 Oferta de valor
+${value('valor')||'[Completar]'}
+
+4.2 Producto / Servicio
+${value('estProducto')||'[Completar]'}
+
+4.3 Precio
+${value('estPrecio')||'[Completar]'}
+
+4.4 Plaza / Distribución
+${value('estPlaza')||'[Completar]'}
+
+4.5 Promoción / Comunicación
+${value('estPromo')||'[Completar]'}
+
+5. PLAN TÁCTICO
+${tacticsText()}
+
+6. PRESUPUESTOS
+
+Ventas actuales: ${value('ventasActuales')||'[Pendiente]'}
+Meta de ventas: ${value('ventasMeta')||'[Pendiente]'}
+Supuestos de la proyección: ${value('supuestosVentas')||'[Completar]'}
+
+Presupuesto total de marketing: ${value('presupuestoMarketing')? '$'+Number(value('presupuestoMarketing')).toLocaleString('es-CO'):'[Pendiente]'}
+Contingencia: ${value('contingencia')? '$'+Number(value('contingencia')).toLocaleString('es-CO'):'[Pendiente]'}
+Criterio de inversión: ${value('criterioInversion')||'[Completar]'}
+
+7. INDICADORES Y CONTROL
+
+KPI 1: ${value('kpi1')||'[Pendiente]'} | Meta: ${value('meta1')||'[Pendiente]'}
+KPI 2: ${value('kpi2')||'[Pendiente]'} | Meta: ${value('meta2')||'[Pendiente]'}
+KPI 3: ${value('kpi3')||'[Pendiente]'} | Meta: ${value('meta3')||'[Pendiente]'}
+
+Frecuencia de seguimiento: ${value('frecuencia')||'[Pendiente]'}
+Fuente de datos: ${value('fuente')||'[Pendiente]'}
+Criterio de ajuste: ${value('ajustes')||'[Completar]'}
+
+RECORDATORIO ACADÉMICO
+Completar el documento final con introducción, plataforma estratégica, fuentes, tablas, figuras, referencias bibliográficas y anexos exigidos por la plantilla institucional.`;
+    q('planOutput').textContent=txt;
+    return txt;
+  }
+
+  function downloadWord(){
+    const text=generate();
+    const html=`<html><head><meta charset="utf-8"><style>body{font-family:Arial;line-height:1.5}h1{color:#12385F}</style></head><body><h1>Plan de Marketing</h1><div>${esc(text).replace(/\n/g,'<br>')}</div></body></html>`;
+    const blob=new Blob([html],{type:'application/msword'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;
+    a.download=`Plan_Marketing_${(value('empresa')||'Empresa').replace(/[^\w\-]+/g,'_')}.doc`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  function example(){
+    const data={
+      empresa:'Arepas Sabor de Casa',oferta:'Arepas listas para consumo',sector:'Alimentos',mercado:'Montería – consumidor final',periodo:'Enero–junio de 2027',equipo:'Equipo ejemplo',
+      reto:'Fortalecer la recompra y conocer mejor a los clientes frecuentes.',
+      externo:'Alta competencia local, consumidores sensibles al precio y crecimiento del uso de WhatsApp para pedidos de alimentos.',
+      interno:'La empresa vende cerca de 2.000 unidades mensuales, tiene clientes frecuentes y recibe pedidos por WhatsApp, pero no cuenta con una base organizada de clientes.',
+      evidencia:'Se observan pedidos recurrentes y la empresa no registra frecuencia ni preferencias. La línea base deberá validarse con ventas y registros reales.',
+      problema:'La empresa tiene clientes recurrentes, pero no registra quiénes compran, con qué frecuencia ni qué prefieren, lo que limita las acciones de fidelización y recompra.',
+      objMarketing:'Incrementar en 15% las ventas realizadas a clientes recurrentes durante los próximos seis meses.',
+      lineaBase:'Base actual por medir con ventas del mes anterior',metaMarketing:'+15%',indicadorObj:'Ventas a clientes recurrentes',periodoObj:'6 meses',
+      objFinanciero:'Mejorar las ventas recurrentes manteniendo la rentabilidad de las acciones promocionales.',
+      cliente:'Personas de 25 a 45 años que viven o trabajan cerca del punto de venta y compran desayunos o cenas.',
+      necesidad:'Resolver una comida rápida, cercana, de buen sabor y a precio razonable.',
+      comportamiento:'Compra presencial y por WhatsApp; valora rapidez y disponibilidad; puede repetir varias veces al mes.',
+      criterios:'Sabor, rapidez, precio, cercanía y confianza.',segmento:'Clientes actuales y recurrentes de 25 a 45 años ubicados en la zona de influencia.',
+      barrera:'Demoras, falta de disponibilidad o una alternativa más conveniente.',
+      posicionamiento:'Ser percibida como una opción cercana, práctica y confiable para disfrutar arepas frescas y de buen sabor.',
+      valor:'Arepas frescas, prácticas y cercanas, con una experiencia de compra sencilla y confiable.',
+      estProducto:'Fortalecer las combinaciones de mayor preferencia y la consistencia de la experiencia del cliente.',
+      estPrecio:'Mantener una relación precio–valor competitiva que favorezca la recompra sin depender permanentemente de descuentos.',
+      estPlaza:'Integrar el punto físico y WhatsApp para facilitar el acceso y la recompra.',
+      estPromo:'Fortalecer la relación con clientes actuales mediante comunicación segmentada orientada a recompra y fidelización.',
+      tac1:'Crear un registro básico de clientes que compran por WhatsApp.',var1:'Promoción',resp1:'Administrador',per1:'Mes 1',tkpi1:'Clientes registrados',pres1:'300000',
+      tac2:'Clasificar clientes por frecuencia y preferencias de compra.',var2:'Transversal',resp2:'Administrador',per2:'Meses 1–2',tkpi2:'% de registros completos',pres2:'0',
+      tac3:'Realizar comunicaciones periódicas dirigidas a clientes recurrentes.',var3:'Promoción',resp3:'Community / administrador',per3:'Meses 2–6',tkpi3:'Tasa de recompra',pres3:'600000',
+      ventasActuales:'$20.000.000 mensuales',ventasMeta:'$23.000.000 mensuales',supuestosVentas:'La meta se relaciona con mayor frecuencia de compra de clientes actuales; debe ajustarse con datos reales.',
+      presupuestoMarketing:'900000',contingencia:'100000',criterioInversion:'Priorizar acciones de bajo costo que permitan conocer al cliente y medir la recompra.',
+      kpi1:'Tasa de recompra',meta1:'+15%',kpi2:'Clientes registrados',meta2:'300',kpi3:'Frecuencia promedio de compra',meta3:'Aumentar frente a la línea base',
+      frecuencia:'Mensual',fuente:'Ventas, WhatsApp y registro de clientes',ajustes:'Revisar segmentación, mensaje y frecuencia de contacto si la recompra no mejora.'
+    };
+    Object.entries(data).forEach(([id,v])=>{if(q(id))q(id).value=v});
+    updateProgress();
+    updateBudget();
+    alert('Ejemplo guía cargado. Recorre las 8 etapas para ver cómo se construye el Plan.');
+  }
+
+  buildTactics();
+
+  root.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.go))));
+  root.querySelectorAll('[data-next]').forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.next))));
+  root.querySelectorAll('[data-prev]').forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.prev))));
+  root.querySelectorAll('[data-go-top]').forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.goTop))));
+  q('saveBtn').addEventListener('click',save);
+  q('exampleBtn').addEventListener('click',example);
+  q('resetBtn').addEventListener('click',resetAll);
+  q('checkDiag').addEventListener('click',checkDiag);
+  q('checkObj').addEventListener('click',checkObj);
+  q('checkMarket').addEventListener('click',checkMarket);
+  q('checkMix').addEventListener('click',checkMix);
+  q('checkTactics').addEventListener('click',checkTactics);
+  q('checkBudget').addEventListener('click',checkBudget);
+  q('finalCheckBtn').addEventListener('click',validateFinal);
+  q('generateBtn').addEventListener('click',generate);
+  q('downloadBtn').addEventListener('click',downloadWord);
+  q('printBtn').addEventListener('click',()=>window.print());
+
+  root.addEventListener('input',()=>{updateProgress();updateBudget()});
+  root.addEventListener('change',()=>{updateProgress();updateBudget()});
+
+  load();
+  go(1);
+})();
+</script>
+</body>
+</html>
